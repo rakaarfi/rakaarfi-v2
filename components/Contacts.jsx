@@ -2,19 +2,14 @@
 
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { MdOutlineEmail } from "react-icons/md";
-import { FaSquareUpwork } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import { BiLogoMediumSquare } from "react-icons/bi";
 import { FaMedium } from "react-icons/fa6";
 import { FaUpwork } from "react-icons/fa6";
 
 import Image from "next/image";
 import { Quicksand, Playwrite_US_Trad } from 'next/font/google';
-import Link from "next/link";
 import React, { useState } from 'react';
-
 
 const quicksand = Quicksand({
     weight: "400",
