@@ -3,19 +3,130 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #F9EAE1;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #261717;
+    --foreground: #F9EAE1;
   }
+
+  ;
+
+  .my-button {
+    border-color: #806C60 !important;
+  }
+
+  ;
+
+  .my-button:hover {
+    background-color: #806C60 !important;
+  }
+
+  ;
+
+  .contact-me-button {
+    background-color: #806C60 !important;
+    border-color: #806C60 !important;
+  }
+
+  ;
+
+  .contact-me-button:hover {
+    background-color: #261717 !important;
+    color: #F9EAE1 !important;
+  }
+
+  ;
 }
+
+/* nextjs-portal {
+  display: none;
+} */
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.contact-me-button {
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  border-color: #F9EAE1;
+  background-color: #3F2727;
+  color: #F9EAE1;
+}
+
+.contact-me-button:hover {
+  border-color: #3F2727;
+  background-color: #F9EAE1;
+  color: #3F2727;
+}
+
+.my-button {
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  border-color: #3F2727;
+  background-color: transparent;
+}
+
+.my-button:hover {
+  background-color: #3F2727;
+  color: #F9EAE1;
+}
+
+.blog-button {
+  padding: 1rem 4rem;
+  border-radius: 5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+  background-color: #3F2727;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-section-image-about {
+  margin-bottom: 1rem;
+  order: -1;
+}
+
+@media (max-width: 768px) {
+  .contact-me-button {
+    padding: 0.25rem 1rem;
+    border-radius: 0.5rem;
+  };
+
+  .my-button {
+    padding: 0.25rem 1rem;
+    border-radius: 0.5rem;
+  };
+
+  .my-button-section{
+    justify-content: center;
+  }
+
+  .homepage-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  };
+
+  .homepage-section-image {
+    margin-bottom: 1rem;
+    order: -1;
+  };
+
+  .homepage-image {
+    max-width: 100%;
+    height: auto;
+};
+  .contact-button {
+    padding: 0.25rem 0.5%;
+};
 }
