@@ -36,7 +36,8 @@ const LogoComponent = ({ logo: Icon, isActive }) => (
         }`} />
 );
 
-export const Navbar = ({ activeEndpoint, setActiveEndpoint }) => {
+// Accept onLinkClick instead of setActiveEndpoint
+export const Navbar = ({ activeEndpoint, onLinkClick }) => {
 
     return (
         <nav className="dark:bg-[#806C60] bg-[#3F2727] text-slate-100 p-3 lg:p-6 md:justify-between md:items-center z-[9999] fixed top-1/2 transform -translate-y-1/2 left-0 h-auto rounded-e-3xl">
@@ -56,7 +57,11 @@ export const Navbar = ({ activeEndpoint, setActiveEndpoint }) => {
                             <Link
                                 key={item.name}
                                 href={`#${item.name}`}
-                                onClick={() => setActiveEndpoint(`#${item.name}`)}
+                                // Use the onLinkClick handler passed from the parent
+                                onClick={(e) => {
+                                    e.preventDefault(); // Prevent default link behavior
+                                    onLinkClick(item.name); // Call the handler with the section name
+                                }}
                                 className={linkClass}
                             >
                                 <LogoComponent
