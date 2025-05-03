@@ -6,7 +6,7 @@ import { IoChatboxEllipses } from "react-icons/io5";
 import { IoDocumentText } from "react-icons/io5";
 
 
-const navbar_logo = [
+const sidebar_logo = [
     {
         "name": "home",
         "logo": BiSolidHome,
@@ -29,21 +29,29 @@ const navbar_logo = [
     },
 ]
 
+// const LogoComponent = ({ logo: Icon, isActive }) => (
+//     <Icon className={`mb-0 lg:mb-2 text-xl lg:text-3xl ${isActive ?
+//         "text-white dark:text-[#3F2727]"
+//         : "text-gray-500 dark:text-[#F9EAE1]"
+//         }`} />
+// );
+
 const LogoComponent = ({ logo: Icon, isActive }) => (
-    <Icon className={`mb-0 lg:mb-2 text-xl lg:text-3xl ${isActive ?
-        "text-white dark:text-[#3F2727]"
-        : "text-gray-500 dark:text-[#F9EAE1]"
+    <Icon className={`mb-0 lg:mb-2 text-xl lg:text-3xl transition-colors duration-200 ease-in-out ${ // Tambahkan transition
+        isActive
+            ? "text-white dark:text-[#3F2727]" // Warna aktif
+            : "text-gray-500 dark:text-[#F9EAE1] hover:text-gray-300 dark:hover:text-gray-300" // Warna non-aktif + hover
         }`} />
 );
 
 // Accept onLinkClick instead of setActiveEndpoint
-export const Navbar = ({ activeEndpoint, onLinkClick }) => {
+export const Sidebar = ({ activeEndpoint, onLinkClick }) => {
 
     return (
         <nav className="dark:bg-[#806C60] bg-[#3F2727] text-slate-100 p-3 lg:p-6 md:justify-between md:items-center z-[9999] fixed top-1/2 transform -translate-y-1/2 left-0 h-auto rounded-e-3xl">
             <div className="container mx-auto justify-between items-center" id="navbarNav">
                 <div className="flex flex-col">
-                    {navbar_logo.map((item) => {
+                    {sidebar_logo.map((item) => {
                         let linkClass = "hover:text-[#000000] my-5 lg:my-10 items-center";
                         let isActive = false;
 

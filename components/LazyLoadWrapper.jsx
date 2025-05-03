@@ -1,37 +1,42 @@
+// components/LazyLoadWrapper.jsx
 'use client';
 
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect } from 'react';
-import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils"; // Import cn jika belum ada
 
-const LazyLoadWrapper = ({ children, threshold = 0.1, triggerOnce = true, forceLoad = false, minHeight = '50vh' }) => {
+// Terima prop 'id'
+const LazyLoadWrapper = ({ children, threshold = 0.1, triggerOnce = true, forceLoad = false, minHeight = '50vh', id, className }) => {
     const [hasBeenInView, setHasBeenInView] = useState(forceLoad);
     const { ref, inView } = useInView({
         threshold: threshold,
-        disabled: forceLoad, // Disable observer if forceLoad is true
+        disabled: forceLoad,
         triggerOnce: triggerOnce,
     });
 
     useEffect(() => {
-        // If forceLoad becomes true later, update the state
         if (forceLoad) {
             setHasBeenInView(true);
         }
     }, [forceLoad]);
 
     useEffect(() => {
-        // Original effect for when component scrolls into view
         if (inView && !forceLoad) {
             setHasBeenInView(true);
         }
     }, [inView, forceLoad]);
 
-    // Determine if content should be rendered
     const shouldRenderContent = hasBeenInView || forceLoad;
 
     return (
-        <div ref={ref} style={{ minHeight: shouldRenderContent ? 'auto' : minHeight }}> {/* Apply minHeight to the wrapper */}
-            {shouldRenderContent ? children : <Skeleton className={`w-full`} style={{ height: minHeight }} />} {/* Use Skeleton with dynamic height */}
+        <div
+            id={id}
+            ref={ref}
+            className={cn(className)}
+            style={{ minHeight: shouldRenderContent ? 'auto' : minHeight }}
+        >
+            {shouldRenderContent ? children : <Skeleton className={`w-full`} style={{ height: minHeight }} />}
         </div>
     );
 };

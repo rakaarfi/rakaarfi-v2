@@ -9,9 +9,10 @@ export default {
   theme: {
   	extend: {
   		colors: {
-            // Use the CSS variables directly
-  			background: 'var(--background)',
-  			foreground: 'var(--foreground)',
+            // --- PERUBAHAN DI SINI ---
+  			background: 'hsl(var(--background))', // Tambahkan hsl()
+  			foreground: 'hsl(var(--foreground))', // Tambahkan hsl()
+            // --- AKHIR PERUBAHAN ---
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
