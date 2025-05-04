@@ -15,19 +15,18 @@ export default function Home() {
 	const [activeEndpoint, setActiveEndpoint] = useState("#home");
 	const [forceLoadSections, setForceLoadSections] = useState(new Set());
 	const [scrollToSectionId, setScrollToSectionId] = useState(null);
-	const [loading, setLoading] = useState(true); // <-- State loading diangkat ke sini
+	const [loading, setLoading] = useState(true);
 
-	// Timer untuk simulasi loading (pindahkan dari LoadingWrapper)
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setLoading(false);
-		}, 1500); // Sesuaikan durasi jika perlu
+		}, 1500);
 
 		return () => clearTimeout(timer);
-	}, []); // Jalankan sekali saat mount
+	}, []);
 
 
-	// --- LOGIKA UNTUK SCROLL SPY (AKTIFKAN KEMBALI) ---
+	// --- LOGIKA UNTUK SCROLL SPY ---
 	useEffect(() => {
 		// Hanya jalankan setup jika loading sudah selesai
 		if (!loading) {
@@ -37,27 +36,24 @@ export default function Home() {
 			// Ambil elemen yang MUNGKIN sudah ada saat ini
 			const sections = sectionIds.map(id => document.getElementById(id)).filter(el => el !== null);
 
-			// Penting: sections[] mungkin tidak lengkap saat awal, tapi observer tetap dibuat
 			if (sections.length === 0) {
-				// Seharusnya minimal #home ditemukan
 				console.warn("ScrollSpy: Critical - #home section not found after loading.");
 				return;
 			}
 
 			const observerOptions = {
 				root: null,
-				rootMargin: "-30% 0px -50% 0px", // Zona aktif tengah viewport
-				threshold: 0 // Trigger saat masuk/keluar zona
+				rootMargin: "-30% 0px -50% 0px",
+				threshold: 0
 			};
 
 			const observerCallback = (entries) => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
-						const wrapperId = entry.target.id; // e.g., 'about-wrapper' or 'home'
-						// Ekstrak ID asli (hapus '-wrapper' jika ada)
+						const wrapperId = entry.target.id;
 						const sectionId = wrapperId.endsWith('-wrapper')
 							? wrapperId.replace('-wrapper', '')
-							: wrapperId; // 'home' tetap 'home'
+							: wrapperId;
 						const newActiveEndpoint = `#${sectionId}`;
 
 						setActiveEndpoint(currentActiveEndpoint => {
@@ -73,19 +69,6 @@ export default function Home() {
 
 			// Buat observer
 			const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-			// Observasi elemen yang ditemukan SAAT INI
-			// Jika elemen lain muncul nanti (karena lazy load), observer TIDAK akan tahu
-			// Ini MASALAHNYA! Kita perlu mengobservasi elemen yang akan muncul.
-
-			// ---- PENDEKATAN YANG LEBIH BAIK: Observasi Placeholder ----
-			// Alih-alih menargetkan div#about dll, kita bisa menargetkan
-			// div terluar dari LazyLoadWrapper (jika kita beri ID unik)
-			// ATAU kita bisa mengobservasi SEMUA elemen section saat mereka muncul.
-
-			// ---- MARI KITA GUNAKAN PENDEKATAN AWAL (Point 7) ----
-			// Yaitu menargetkan div pembungkus LazyLoadWrapper / div#home
-			// Ini memerlukan ID pada LazyLoadWrapper
 
 			// -- KEMBALIKAN ID KE LazyLoadWrapper --
 			console.log("ScrollSpy: Reverting to observing wrapper elements...");
@@ -104,18 +87,15 @@ export default function Home() {
 			wrapperSections.forEach(section => observer.observe(section));
 			console.log("ScrollSpy: Observer attached to wrapper sections:", wrapperSections.map(s => s.id));
 
-
 			// Cleanup function
 			return () => {
 				console.log("ScrollSpy: Disconnecting observer.");
 				observer.disconnect();
 			};
-
 		} else {
 			console.log("ScrollSpy: Waiting for loading to finish...");
 		}
-		// Jalankan effect ini setiap kali 'loading' berubah
-	}, [loading]); // Dependensi loading sudah benar
+	}, [loading]);
 
 
 	// --- Logika untuk handle klik sidebar dan scroll ---
@@ -156,49 +136,11 @@ export default function Home() {
 		}
 	}, [scrollToSectionId]);
 
-	// --- Render Komponen ---
-	// 	return (
-	// 		<LoadingWrapper isLoading={loading}>
-	// 			<nav>
-	// 				<Sidebar activeEndpoint={activeEndpoint} onLinkClick={handleSidebarClick} />
-	// 			</nav>
-	// 			<div>
-	// 				{/* Home section tidak dibungkus LazyLoad, jadi ID tetap di sini */}
-	// 				<div id="home" className="lg:mx-40 mx-[9rem] lg:my-0 my-24">
-	// 					<HomeSection activeEndpoint={activeEndpoint} setActiveEndpoint={setActiveEndpoint} />
-	// 				</div>
-
-	// 				{/* Berikan 'id' ke LazyLoadWrapper, hapus dari div dalam */}
-	// 				<LazyLoadWrapper id="about" forceLoad={forceLoadSections.has('about')} minHeight="100vh">
-	// 					<div className="lg:mx-40 mx-[9rem] lg:my-0 my-24"> {/* ID dihapus dari sini */}
-	// 						<About />
-	// 					</div>
-	// 				</LazyLoadWrapper>
-	// 				<LazyLoadWrapper id="projects" forceLoad={forceLoadSections.has('projects')} minHeight="100vh">
-	// 					<div className="lg:mx-40 mx-[9rem] lg:my-0 my-24"> {/* ID dihapus dari sini */}
-	// 						<Projects />
-	// 					</div>
-	// 				</LazyLoadWrapper>
-	// 				<LazyLoadWrapper id="blog" forceLoad={forceLoadSections.has('blog')} minHeight="100vh">
-	// 					<div className="lg:mx-40 mx-[9rem] lg:my-0 my-24"> {/* ID dihapus dari sini */}
-	// 						<Blog />
-	// 					</div>
-	// 				</LazyLoadWrapper>
-	// 				<LazyLoadWrapper id="contacts" forceLoad={forceLoadSections.has('contacts')} minHeight="100vh">
-	// 					<div className="lg:mx-40 mx-[9rem] lg:my-0 my-24"> {/* ID dihapus dari sini */}
-	// 						<Contacts />
-	// 					</div>
-	// 				</LazyLoadWrapper>
-	// 			</div>
-	// 		</LoadingWrapper>
-	// 	);
-	// }
-
 	// --- Handler BARU untuk klik tombol internal ---
 	const handleInternalLinkClick = (sectionId) => {
 		const newActiveEndpoint = `#${sectionId}`;
 		console.log(`InternalLinkClick: Setting active endpoint to ${newActiveEndpoint}`);
-		// 1. Update highlight sidebar secara langsung (opsional, scroll spy akan menyusul)
+		// 1. Update highlight sidebar secara langsung
 		setActiveEndpoint(newActiveEndpoint);
 		// 2. Pastikan section di-force load jika belum
 		setForceLoadSections(prev => new Set(prev).add(sectionId));
@@ -213,14 +155,12 @@ export default function Home() {
 				<Sidebar activeEndpoint={activeEndpoint} onLinkClick={handleSidebarClick} />
 			</nav>
 			<div>
-				{/* ID 'home' di sini, diobservasi langsung */}
 				<div id="home" className="snap-section">
 					<HomeSection onInternalLinkClick={handleInternalLinkClick} />
 				</div>
 
-				{/* Berikan ID unik ke LazyLoadWrapper (misal: 'id-wrapper') */}
 				<LazyLoadWrapper id="about-wrapper" className="snap-section" forceLoad={forceLoadSections.has('about')} minHeight="100vh">
-					<div id="about"> {/* ID konten tetap di sini untuk scroll */}
+					<div id="about">
 						<About />
 					</div>
 				</LazyLoadWrapper>

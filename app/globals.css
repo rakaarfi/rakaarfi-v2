@@ -44,36 +44,23 @@ html {
 
 @layer components {
 
-  /* Kelas untuk elemen yang akan di-snap */
   .snap-section {
     scroll-snap-align: start;
-    /* Sejajarkan bagian atas elemen dengan viewport */
   }
 }
 
 @layer base {
   :root {
-    /* Warna dasar tema terang */
-    /* --background: #F9EAE1;
-    --foreground: #171717; */
-
     --background: 25 54% 94%;
-    /* Sekitar #F9EAE1 */
     --foreground: 240 10% 10%;
-    /* Sekitar #171717 */
 
-    /* Warna komponen tema terang */
     --card: 25 54% 94%;
     --card-foreground: 240 10% 3.9%;
     --popover: 25 54% 94%;
     --popover-foreground: 240 10% 3.9%;
 
-    /* --primary: 20 43% 51%;
-    --primary-foreground: 25 54% 94%; */
     --primary: 10 30% 20%;
-    /* Sekitar #3F2727 */
     --primary-foreground: 25 54% 94%;
-    /* Sekitar #F9EAE1 */
 
     --secondary: 30 39% 88%;
     --secondary-foreground: 20 43% 21%;
@@ -88,7 +75,6 @@ html {
     --ring: 20 43% 51%;
     --radius: 0.5rem;
 
-    /* Warna chart tema terang */
     --chart-1: 20 70% 60%;
     --chart-2: 35 65% 55%;
     --chart-3: 10 60% 50%;
@@ -97,53 +83,34 @@ html {
   }
 
   .dark {
-    /* Warna dasar tema gelap */
-    /* --background: #261717;
-    --foreground: #F9EAE1; */
     --background: 10 24% 12%;
-    /* Sekitar #261717 */
     --foreground: 25 54% 94%;
-    /* Sekitar #F9EAE1 */
 
-    /* Warna komponen tema gelap */
     --card: 10 24% 15%;
     --card-foreground: 25 54% 94%;
     --popover: 10 24% 15%;
     --popover-foreground: 25 54% 94%;
 
     --primary: 19 12% 44%;
-    /* Sekitar #806C60 */
     --primary-foreground: 25 54% 94%;
-    /* Sekitar #F9EAE1 */
-    /* --primary: 15 50% 80%;
-    --primary-foreground: 10 24% 15%; */
 
     --secondary: 12 20% 25%;
     --secondary-foreground: 25 54% 94%;
     --muted: 12 15% 20%;
     --muted-foreground: 20 20% 70%;
 
-    /* --accent: 8 30% 30%;
-    --accent-foreground: 25 54% 94%; */
     --accent: 19 12% 44%;
-    /* Sekitar #806C60 (untuk hover, dll) */
     --accent-foreground: 25 54% 94%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 25 54% 94%;
 
     --border: 19 12% 38%;
-    /* Sedikit lebih gelap dari #806C60 */
     --input: 19 12% 38%;
     --ring: 19 12% 44%;
-    /* Sekitar #806C60 (untuk focus ring) */
-    /* --border: 12 15% 30%;
-    --input: 12 15% 30%;
-    --ring: 15 50% 80%; */
 
     --radius: 0.5rem;
 
-    /* Warna chart tema gelap */
     --chart-1: 15 75% 65%;
     --chart-2: 30 60% 55%;
     --chart-3: 5 50% 60%;

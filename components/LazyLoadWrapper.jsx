@@ -4,7 +4,7 @@
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect } from 'react';
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils"; // Import cn jika belum ada
+import { cn } from "@/lib/utils";
 
 // Terima prop 'id'
 const LazyLoadWrapper = ({ children, threshold = 0.1, triggerOnce = true, forceLoad = false, minHeight = '50vh', id, className }) => {

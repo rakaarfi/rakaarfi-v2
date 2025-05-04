@@ -1,12 +1,12 @@
 // components/SectionLayout.jsx
 import Image from 'next/image';
-import { Quicksand, Playwrite_US_Trad } from 'next/font/google'; // Hanya perlu Quicksand untuk teks utama
+import { Quicksand, Playwrite_US_Trad } from 'next/font/google';
 
-// Inisialisasi font (cukup Quicksand di sini, Playwrite akan ada di tombol yg di-pass sbg children)
+// Inisialisasi font
 const quicksand = Quicksand({
-    weight: ["400", "700"], // Ambil bold juga jika dipakai di paragraf
+    weight: ["400", "700"],
     subsets: ["latin"],
-    display: "swap", // 'swap' lebih baik untuk performa font
+    display: "swap",
 });
 
 const playwrite = Playwrite_US_Trad({
@@ -16,15 +16,15 @@ const playwrite = Playwrite_US_Trad({
 });
 
 export default function SectionLayout({
-    title,                // Judul utama section (besar)
-    subtitle,             // Judul kecil opsional (seperti "rakaarfi" di Home)
-    paragraphs = [],      // Array string atau JSX untuk paragraf
-    imageSrc,             // Path gambar
-    imageAlt,             // Alt text gambar
-    imagePosition = 'right', // Posisi gambar default ('left' atau 'right')
-    imagePriority = false, // Prop untuk next/image priority
-    children,             // Slot untuk tombol atau konten unik lainnya
-    className = '',       // Kelas tambahan untuk div terluar
+    title,
+    subtitle,
+    paragraphs = [],
+    imageSrc,
+    imageAlt,
+    imagePosition = 'right',
+    imagePriority = false,
+    children,
+    className = '',
 }) {
     // Tentukan urutan berdasarkan posisi gambar
     const textOrderClass = imagePosition === 'right' ? 'md:order-1' : 'md:order-2';

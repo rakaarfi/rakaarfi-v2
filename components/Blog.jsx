@@ -1,4 +1,4 @@
-"use client"; // Add this for client-side hooks
+"use client";
 import React, { useState } from 'react';
 import Image from "next/image";
 import { Quicksand, Playwrite_US_Trad } from 'next/font/google';
@@ -249,83 +249,6 @@ export default function Blog() {
             )}
         </>
     );
-
-
-    //     return (
-    //         // Use bg-background and text-foreground for the main container
-    //         <div className="min-h-screen flex flex-col justify-center items-center py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-background text-foreground">
-    //             <div className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 mb-16 w-full max-w-6xl`}>
-    //                 {/* Text Content */}
-    //                 <div className='flex flex-col gap-6 lg:gap-8 max-w-xl text-center lg:text-left order-2 lg:order-1'>
-    //                     {/* Titles use main foreground */}
-    //                     <h1 className={`${quicksand.className} lg:text-6xl text-4xl font-bold text-foreground`}>The Dev's Notebook</h1>
-    //                     {/* Secondary text uses muted-foreground */}
-    //                     <p className={`${quicksand.className} lg:text-xl text-base `}>
-    //                         Join me as I document my journey as a developer, sharing insights, tutorials, and lessons learned along the way. From tackling coding challenges to exploring the latest tech trends, there's always something exciting to discover.
-    //                     </p>
-    //                     <div className="flex justify-center lg:justify-start mt-4">
-    //                         {/* Dialog Trigger Button */}
-    //                         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-    //                             <DialogTrigger asChild>
-    //                                 {/* New Button using Shadcn <Button> (Matches "View Portfolio" style) */}
-    //                                 <Button
-    //                                     variant="outline" // Base variant
-    //                                     size="lg"
-    //                                     className={`${playwrite.className} shadow text-xs lg:text-xl rounded-[0.8rem] py-[22px]
-    //                                            border-[#3F2727] text-[#3F2727] bg-transparent hover:bg-[#3F2727] hover:text-[#F9EAE1]
-    //                                            dark:border-[#806C60] dark:text-[#F9EAE1] dark:hover:bg-[#806C60] dark:hover:text-[#F9EAE1]
-    //                                            transition-colors duration-200 ease-in-out focus-visible:ring-offset-0 focus-visible:ring-0`}
-    //                                     onClick={handleExploreClick}
-    //                                 >
-    //                                     Explore My Notebook
-    //                                 </Button>
-    //                             </DialogTrigger>
-    //                             {/* Dialog uses bg-background, border-border by default */}
-    //                             <DialogContent className="sm:max-w-[90%] md:max-w-[80%] lg:max-w-[70%] xl:max-w-6xl max-h-[90vh] flex flex-col bg-background border-border">
-    //                                 {/* Header uses border-border */}
-    //                                 <DialogHeader className="border-b border-border pb-4">
-    //                                     {/* Title uses foreground */}
-    //                                     <DialogTitle className={`${quicksand.className} text-2xl font-bold text-foreground`}>The Dev's Notebook - Articles</DialogTitle>
-    //                                     {/* Description uses muted-foreground */}
-    //                                     <DialogDescription className="text-sm text-muted-foreground">
-    //                                         My latest posts from Medium. Page {currentPage} of {totalPages > 0 ? totalPages : 1}.
-    //                                     </DialogDescription>
-    //                                 </DialogHeader>
-    //                                 <div className="flex-grow overflow-y-auto p-1 pr-3 -mr-2 mt-4 mb-4 custom-scrollbar">
-    //                                     {renderModalContent()}
-    //                                 </div>
-    //                                 {/* Footer uses border-border */}
-    //                                 <DialogFooter className="border-t border-border pt-4">
-    //                                     {/* Muted text for article count */}
-    //                                     <span className="text-xs text-muted-foreground mr-auto pl-2">
-    //                                         {allArticles.length > 0 ? `Showing ${articlesToShow.length} of ${allArticles.length} articles` : ''}
-    //                                     </span>
-    //                                     {/* Close button uses outline variant (theme colors) */}
-    //                                     <DialogClose asChild>
-    //                                         <Button type="button" variant="outline">
-    //                                             Close
-    //                                         </Button>
-    //                                     </DialogClose>
-    //                                 </DialogFooter>
-    //                             </DialogContent>
-    //                         </Dialog>
-    //                     </div>
-    //                 </div>
-    //                 {/* Image */}
-    //                 <div className="relative aspect-[3/4] w-full max-w-[300px] lg:max-w-[320px] homepage-section-image">
-    //                     <Image
-    //                         src="/home-photo.jpg"
-    //                         alt="A picture representing the blog section"
-    //                         fill
-    //                         sizes="(max-width: 768px) 90vw, 40vw"
-    //                         className="homepage-image object-cover rounded-full"
-    //                         priority
-    //                     />
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     );
-    // }
 
     const paragraphs = [
         "Join me as I document my journey as a developer, sharing insights, tutorials, and lessons learned along the way. From tackling coding challenges to exploring the latest tech trends, there's always something exciting to discover."

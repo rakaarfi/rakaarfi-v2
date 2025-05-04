@@ -29,13 +29,6 @@ const sidebar_logo = [
     },
 ]
 
-// const LogoComponent = ({ logo: Icon, isActive }) => (
-//     <Icon className={`mb-0 lg:mb-2 text-xl lg:text-3xl ${isActive ?
-//         "text-white dark:text-[#3F2727]"
-//         : "text-gray-500 dark:text-[#F9EAE1]"
-//         }`} />
-// );
-
 const LogoComponent = ({ logo: Icon, isActive }) => (
     <Icon className={`mb-0 lg:mb-2 text-xl lg:text-3xl transition-colors duration-200 ease-in-out ${ // Tambahkan transition
         isActive
@@ -65,10 +58,9 @@ export const Sidebar = ({ activeEndpoint, onLinkClick }) => {
                             <Link
                                 key={item.name}
                                 href={`#${item.name}`}
-                                // Use the onLinkClick handler passed from the parent
                                 onClick={(e) => {
-                                    e.preventDefault(); // Prevent default link behavior
-                                    onLinkClick(item.name); // Call the handler with the section name
+                                    e.preventDefault();
+                                    onLinkClick(item.name);
                                 }}
                                 className={linkClass}
                             >
